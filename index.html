@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Calculadora de Produção de Cachaça</title>
+<style>
+    body {
+        font-family: Arial, sans-serif;
+        background-color: #f2f2f2;
+        text-align: center;
+    }
+    .container {
+        max-width: 400px;
+        margin: 50px auto;
+        background-color: #fff;
+        border: 1px solid #ccc;
+        border-radius: 5px;
+        padding: 20px;
+        box-shadow: 0 0 10px rgba(0,0,0,0.1);
+    }
+    h2 {
+        margin-bottom: 20px;
+        color: #333;
+    }
+    label {
+        display: block;
+        margin-bottom: 10px;
+        color: #666;
+    }
+    input[type="number"] {
+        width: calc(100% - 20px);
+        padding: 10px;
+        margin-bottom: 10px;
+        border: 1px solid #ccc;
+        border-radius: 3px;
+        font-size: 16px;
+        text-align: center;
+    }
+    button {
+        width: 100%;
+        padding: 15px;
+        background-color: #4CAF50;
+        color: white;
+        border: none;
+        border-radius: 3px;
+        cursor: pointer;
+        font-size: 16px;
+        transition: background-color 0.3s;
+    }
+    button:hover {
+        background-color: #45a049;
+    }
+    #resultado {
+        margin-top: 20px;
+        padding: 15px;
+        background-color: #f9f9f9;
+        border: 1px solid #ccc;
+        border-radius: 3px;
+        font-size: 18px;
+        text-align: left;
+    }
+</style>
+</head>
+<body>
+    <div class="container">
+        <h2>Calculadora de Produção de Cachaça</h2>
+        <label for="quantidade">Quantidade desejada de cachaça (em litros):</label>
+        <input type="number" id="quantidade" min="1" step="1" placeholder="digite a quantidade de cachaça desejada em litros">
+        <button onclick="calcularProducao()">Calcular</button>
+        <div id="resultado"></div>
+    </div>
+
+    <script>
+        function calcularProducao() {
+            // Obter quantidade desejada em litros de cachaça
+            var quantidadeLitrosCachaca = parseInt(document.getElementById('quantidade').value);
+
+            // Proporções fornecidas
+            var proporcaoCanaParaCachaca = 650 / 300; // litros de caldo por litro de cachaça
+            var proporcaoCanaParaGarapa = 1300 / 650; // kg de cana por litro de garapa
+            
+            // Calcular a quantidade de caldo de cana e de cana de açúcar necessárias
+            var quantidadeCaldoCana = quantidadeLitrosCachaca * proporcaoCanaParaCachaca;
+            var quantidadeCanaAcucar = quantidadeCaldoCana * proporcaoCanaParaGarapa;
+
+            // Formatar os resultados
+            var resultadoHTML = `
+                <p><strong>Resultados:</strong></p>
+                <p>Quantidade desejada de cachaça: ${quantidadeLitrosCachaca} litros</p>
+                <p>Quantidade de caldo de cana necessária: ${quantidadeCaldoCana.toFixed(2)} litros</p>
+                <p>Quantidade de cana de açúcar necessária: ${quantidadeCanaAcucar.toFixed(2)} kg</p>
+            `;
+
+            // Exibir o resultado
+            document.getElementById('resultado').innerHTML = resultadoHTML;
+        }
+    </script>
+</body>
+</html>
